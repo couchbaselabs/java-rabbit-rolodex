@@ -1,0 +1,18 @@
+plugins {
+  id 'application'
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation 'com.couchbase.client:java-client:3.1.0'
+  implementation 'com.couchbase.client:couchbase-encryption:3.0.0'
+  implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
+  implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.11.2'
+}
+
+application {
+  mainClass = 'com.couchbase.example.encryption.App'
+}
