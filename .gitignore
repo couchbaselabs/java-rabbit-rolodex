@@ -6,6 +6,7 @@ build
 
 @ Ignore IntelliJ IDEA project files
 .idea
+out
 
 # Ignore macOS filesystem metadata
 .DS_Store
