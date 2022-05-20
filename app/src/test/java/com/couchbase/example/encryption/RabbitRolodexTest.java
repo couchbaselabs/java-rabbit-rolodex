@@ -60,19 +60,14 @@ public class RabbitRolodexTest {
   private static final Keyring keyring = keyringWithRandomKey();
   private static final CryptoManager cryptoManager = simpleCryptoManager(keyring);
 
-  private static ClusterEnvironment env;
   private static Cluster cluster;
   private static Collection collection;
 
   @BeforeAll
   static void connect() {
-    env = ClusterEnvironment.builder()
-        .cryptoManager(cryptoManager)
-        .build();
-
     cluster = Cluster.connect(COUCHBASE_CONNECTION_STRING,
         clusterOptions(COUCHBASE_USERNAME, COUCHBASE_PASSWORD)
-            .environment(env));
+            .environment(env -> env.cryptoManager(cryptoManager)));
 
     // Open the bucket and grab a reference to the default collection
     Bucket bucket = cluster.bucket(COUCHBASE_BUCKET);
@@ -85,7 +80,6 @@ public class RabbitRolodexTest {
   @AfterAll
   static void disconnect() {
     cluster.disconnect();
-    env.shutdown();
   }
 
   private static Keyring keyringWithRandomKey() {

@@ -53,13 +53,10 @@ public class App {
     Keyring keyring = keyringWithRandomKey();
     CryptoManager cryptoManager = simpleCryptoManager(keyring);
 
-    // Connect to Couchbase using a custom ClusterEnvironment
-    ClusterEnvironment env = ClusterEnvironment.builder()
-        .cryptoManager(cryptoManager)
-        .build();
+    // Connect to Couchbase and configure the ClusterEnvironment to use the CryptoManager
     Cluster cluster = Cluster.connect(COUCHBASE_CONNECTION_STRING,
         clusterOptions(COUCHBASE_USERNAME, COUCHBASE_PASSWORD)
-            .environment(env));
+            .environment(env -> env.cryptoManager(cryptoManager)));
 
     // Open the bucket and grab a reference to the default collection
     Bucket bucket = cluster.bucket(COUCHBASE_BUCKET);
@@ -105,7 +102,6 @@ public class App {
     System.out.println();
 
     cluster.disconnect();
-    env.shutdown();
   }
 
   /**
@@ -116,7 +112,7 @@ public class App {
    * the key cannot be decrypted after the program ends.
    * <p>
    * A real application would load the key from a secure location,
-   * and use same same key for each run.
+   * and use same key for each run.
    *
    * @see com.couchbase.client.encryption.KeyStoreKeyring
    * @see com.couchbase.client.encryption.FilesystemKeyring
