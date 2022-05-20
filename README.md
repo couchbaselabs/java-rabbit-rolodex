@@ -2,6 +2,8 @@
 
 A sample project that reveals the secrets of Field-Level Encryption with the Couchbase Java SDK.
 
+This code accompanies the Couchbase Connect 2021 presentation, [Keeping Secrets with Field-Level Encryption (YouTube)](https://www.youtube.com/watch?v=QQ8t4i8ai0s). 
+
 Requires:
 * JDK 1.8 or later
 * Couchbase Server running on localhost

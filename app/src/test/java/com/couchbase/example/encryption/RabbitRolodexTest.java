@@ -20,6 +20,7 @@ import com.couchbase.client.core.encryption.CryptoManager;
 import com.couchbase.client.core.service.ServiceType;
 import com.couchbase.client.encryption.AeadAes256CbcHmacSha512Provider;
 import com.couchbase.client.encryption.DefaultCryptoManager;
+import com.couchbase.client.encryption.FilesystemRotatingKeyring;
 import com.couchbase.client.encryption.Keyring;
 import com.couchbase.client.java.Bucket;
 import com.couchbase.client.java.Cluster;
